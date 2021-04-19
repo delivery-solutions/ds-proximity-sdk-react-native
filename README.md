@@ -1,1 +1,1 @@
-# react-native-proximity-sdk
+# ds-proximity-sdk-react-native
