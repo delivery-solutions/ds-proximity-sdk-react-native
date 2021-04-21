@@ -92,7 +92,7 @@ let launchObject = {
 DSProximity.startTracking(
   launchObject,
   (isTracking) => {
-    console.log('Success : ' + isTracking); // if isTracking is true, the tracking has started else the tracking has stopped
+    console.log('Success : ' + isTracking); // If isTracking is true, tracking has started else the tracking has stopped
   },
   (error) => {
     console.log('Error : ' + error);
@@ -107,7 +107,7 @@ let launchObject = {
   authToken: '<token>', // Token for authentication; provided by Delivery Solutions
   username: '<USER-ID>', // Identifier for the user
   trackingId: '1234', // A unique identifier to track the trip
-  destination: { // Optional. If destination is passed, the tracking stops when user reaches these coordinates
+  destination: { // Optional; if destination is passed, the tracking stops when user reaches these coordinates
     latitude: 30.2720039,
     longitude: 78.0892899
   },
@@ -116,7 +116,7 @@ let launchObject = {
 DSProximity.startTracking(
   launchObject,
   (isTracking) => {
-    console.log('Success : ' + isTracking); // if isTracking is true, the tracking has started else the tracking has stopped
+    console.log('Success : ' + isTracking); // If isTracking is true, tracking has started else the tracking has stopped
   },
   (error) => {
     console.log('Error : ' + error);
@@ -131,7 +131,7 @@ By default the plugin stops tracking automatically when the user reaches the des
 ```
 DSProximity.stopTracking(
   (isTracking) => {
-    console.log('Success : ' + isTracking); // false means tracking has stopped
+    console.log('Success : ' + isTracking); //  If isTracking is false, tracking has stopped
   },
   (err) => {
     console.log('Error : ' + err);
@@ -140,10 +140,10 @@ DSProximity.stopTracking(
 ```
 ### Get Tracking State
 
-In some cases you may want to check the state of tracking, i.e. whether the tracking is live or stopped. You can call the below method to get the tracking state.
+In some cases you may want to check the state of tracking, i.e. whether the tracking is in progress or stopped. You can call the below method to get the tracking state.
 
 ```
 DSProximity.getTrackingState((isTracking) => {
-  console.log('tracking state: ' + isTracking); //true indicates the tracking is in progress
+  console.log('tracking state: ' + isTracking); // If isTracking is true, tracking is in progress
 });
-```
+``` 
