@@ -3,8 +3,8 @@
 The Proximity SDK for React Native enables retailers to easily add Delivery Solutions' in-store pickup and curbside experience to their React Native mobile application.
 
 ## Proximity SDK Prerequisite
-* A SDK Token and License Key from your Delivery Solutions CSM
-* Locations created in your Delivery Solutions accounts
+* A Authentication Token and SDK License Key from your Delivery Solutions CSM
+* Locations created in your Delivery Solutions account
 
 ## Path to Live
 * Grant permission to use location services
@@ -40,7 +40,7 @@ or with Yarn
 yarn install ds-proximity-sdk-react-native
 ```
 
-⚠️ If you have a previous version of react-native < 0.60, you should try link to link the plugin with the following command. 
+⚠️  If you have a previous version of react-native < 0.60, you should try link to link the plugin with the following command. 
 
 ```
 react-native link ds-proximity-sdk-react-native
