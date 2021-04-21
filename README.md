@@ -86,7 +86,7 @@ let launchObject = {
   authToken: '<token>', // Token for authentication; provided by Delivery Solutions
   username: '<USER-ID>', // Identifier for the user
   trackingId: '1234', // A unique identifier to track the trip
-  locationId: '23' // ```storeExternalId``` as registered with Delivery Solutions
+  locationId: '23' // storeExternalId as registered with Delivery Solutions
 };
 
 DSProximity.startTracking(
