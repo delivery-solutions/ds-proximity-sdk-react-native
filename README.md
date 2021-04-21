@@ -1,6 +1,6 @@
 # ds-proximity-sdk-react-native
 
-The Proximity SDK for React Native enables retailers to easily add Delivery Solutions' in-store pickup and curbside experience to their React Native mobile application.
+The Proximity SDK for React Native enables retailers to easily add [Delivery Solutions](https://www.deliverysolutions.co)' in-store pickup and curbside experience to their React Native mobile application.
 
 ## Proximity SDK Prerequisite
 * An authentication token and SDK license key from your Delivery Solutions CSM
@@ -147,3 +147,7 @@ DSProximity.getTrackingState((isTracking) => {
   console.log('tracking state: ' + isTracking); // If isTracking is true, tracking is in progress
 });
 ``` 
+
+## License
+
+Copyright (c) 2020 by [Delivery Solutions](https://www.deliverysolutions.co). All Rights Reserved. Usage of this library implies agreement to abide by the license terms.
