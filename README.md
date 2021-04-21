@@ -68,7 +68,7 @@ pod install
 ```
 
 ## Usage
-Import the DS Proximity Tracking plugin as below:
+Import the DS Proximity plugin as below:
 
 ```
 import DSProximity from 'ds-proximity-sdk-react-native';
