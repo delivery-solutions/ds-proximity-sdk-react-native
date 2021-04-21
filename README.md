@@ -11,7 +11,7 @@ The Delivery Solutions Proximity SDK for React Native enables retailers to easil
 * Configure license key
 * Add a access token
 * Add a tracking Id 
-* Add a location Id unique to your system and configured in the Delivery Solutions portal
+* Add a location Id; unique to your system and configured in the Delivery Solutions portal
 * Implement trigger to start tracking
 * Go on a test drive
 
@@ -67,7 +67,7 @@ Navigate to <Project directory>/iOS from terminal and run the below command:
 pod install
 ```
 
-### Usage
+## Usage
 Import the DS Proximity Tracking plugin as below:
 
 ```
@@ -100,7 +100,7 @@ DSProximity.startTracking(
 );
 ```
 
-To start tracking, when you have the destination object {latitude: value, longitude: value} handy while calling the start tracking function then you can pass the following object in DeliverySolution.startTracking();
+To start tracking, when you have the destination object ```{latitude: value, longitude: value}``` handy while calling the start tracking function then you can pass the following object in ```DSProximity.startTracking()```;
 
 ```
 let launchObject = {
