@@ -3,7 +3,7 @@
 The Proximity SDK for React Native enables retailers to easily add Delivery Solutions' in-store pickup and curbside experience to their React Native mobile application.
 
 ## Proximity SDK Prerequisite
-* A Authentication Token and SDK License Key from your Delivery Solutions CSM
+* A authentication token and SDK license key from your Delivery Solutions CSM
 * Locations created in your Delivery Solutions account
 
 ## Path to Live
