@@ -20,10 +20,13 @@ The Delivery Solutions Proximity SDK for React Native enables retailers to easil
 This guide helps you to get started with Delivery Solutions Proximity SDK for React Native. Run the following command into an active React Native application to install the SDK into you current application.
 
 ### Installing dependencies
-You will need Node, Yarn, Watchman, the React Native command line interface, Android Studio, and Xcode.
+
+You will need Node, Yarn, Watchman, the React Native command line interface, Android Studio and Xcode.
+
 ```
 brew install yarn
 brew install watchman
+```
 
 ### Adding SDK
 
