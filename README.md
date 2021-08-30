@@ -22,10 +22,10 @@ npm install react-native-background-fetch --save
 ### `react-native >= 0.60`
 
 ### iOS
-- [Auto-linking Setup](help/INSTALL-IOS-AUTO.md)
+- [Auto-linking Setup](https://github.com/delivery-solutions/ds-proximity-sdk-react-native/blob/main/help/INSTALL-IOS-AUTO.md)
 
 ### Android
-- [Auto-linking Setup](help/INSTALL-ANDROID-AUTO.md)
+- [Auto-linking Setup](https://github.com/delivery-solutions/ds-proximity-sdk-react-native/blob/main/help/INSTALL-ANDROID-AUTO.md)
 
 ## :large_blue_diamond: Configure your license (Only for Android)
 
