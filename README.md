@@ -44,6 +44,52 @@ Import Proximity SDK as below:
 
 ```js
 import Proximity from '@deliverysolutions/react-native-proximity-sdk';
+
+class App extends Component {
+
+  componentDidMount() {
+    Proximity.init({
+      accessToken: "<YOUR-ACCESS-TOKEN>"
+    }).then( async () => {
+      // check the SDK's current tracking state.
+      const isTracking = await Proximity.getTrackingState()
+      console.log(`Tracking state: ${isTracking}`);
+
+      // setup geofence handler
+      Proximity.onGeofence = (isTracking) => {
+        // stuff to do here, when user enters geofence and tracking is stopped
+      }
+    })
+  }
+
+  handleStartTrackingClick = async () => {
+
+    // Set vehicle details before you start tracking, this is optional.
+    await Proximity.updateVehicleDetails({
+      vehicleColor: 'silver | black | white | grey | blue | red | brown | green | teal | yellow',
+      vehicleMake: 'string',
+      vehicleType: 'hatchback | micro | minivan | pickup | sedan | truck | suv',
+      vehicleNumber: 'string',
+      description: 'string',
+      parkingSlot: 'string',
+      isPickupBySomeoneElse: 'boolean',
+      userName: 'string',
+      contactNumber: 'string'
+    })
+
+    // Initiates tracking using the Order Id. Alternatively you can also use toggle tracking handler that toggles tracking based on the current tracking state.
+    const isTracking = await Proximity.startTracking({
+      orderId: '<ORDER-ID>'
+    })
+    console.log(`Tracking state: ${isTracking}`);
+  }
+
+  handleStopTrackingClick = async () => {
+    // Terminates tracking manually.
+    const isTracking = await Proximity.stopTracking()
+    console.log(`Tracking state: ${isTracking}`);
+  }
+}
 ```
 
 ## Methods
