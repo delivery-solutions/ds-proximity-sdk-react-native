@@ -131,4 +131,4 @@ Proximity.onGeofence = (isTracking) => {
 
 ## License
 
-Copyright (c) 2021 by [Delivery Solutions](https://www.deliverysolutions.co). All Rights Reserved. Usage of this library implies agreement to abide by the license terms.
+Copyright (c) 2021 by [Delivery Solutions](https://www.deliverysolutions.co). All Rights Reserved. Usage of this library implies agreement to abide by the license terms. Please refer to our [Terms of Service](https://www.deliverysolutions.co/terms-of-service).
