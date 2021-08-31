@@ -40,7 +40,7 @@ Add the below entry in your android/app/src/main/res/values/strings.xml file (Cr
 
 ## Usage
 
-Import Proximity SDK as below:
+Import and use Proximity SDK as below:
 
 ```js
 import Proximity from '@deliverysolutions/react-native-proximity-sdk';
