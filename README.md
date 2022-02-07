@@ -122,7 +122,7 @@ class App extends Component {
 
 ### Init tracking
 
-To initialize tracking, call the init method, this will authorise the SDK with the provided `accessToken` against your tenant and prepare it for tracking.
+To initialize tracking, call the init method, this will authorise the SDK with the provided `accessToken` against your tenant and prepare it for tracking. acessToken must be environment dependant - for testMode as true our sandbox accessToken and for testMode as false use the production token.
 
 `testMode` (default - false) is used to switch between sandbox and production environments.
 
