@@ -1,8 +1,19 @@
-# @deliverysolutions/react-native-proximity-sdk
+# Official Proximity SDK for React Native
 
-Proximity Delivery Solutions Tracking SDK for React-Native
+<p align="center" width="100%">
+    <img width="33%" src="https://images.squarespace-cdn.com/content/v1/6073efa8ab5c5b78808fe878/1618336613080-9PJH9HELYSVDIBCPF7OU/logo.png?format=1500w">
+</p>
 
-## :large_blue_diamond: Installing the SDK
+&nbsp;
+
+Delivery Solutions' Proximity Tracking SDK for React Native
+
+## Links
+
+ - [Contact Us](https://www.deliverysolutions.co/contact-us)
+
+
+## Installing the SDK
 
 ### With `yarn`
 
@@ -17,7 +28,7 @@ npm install @deliverysolution/react-native-proximity-sdk --save
 npm install react-native-background-fetch --save
 ```
 
-## :large_blue_diamond: Setup Guides
+## Setup Guides
 
 ### `react-native >= 0.60`
 
@@ -27,7 +38,7 @@ npm install react-native-background-fetch --save
 ### Android
 - [Auto-linking Setup](https://github.com/delivery-solutions/ds-proximity-sdk-react-native/blob/main/help/INSTALL-ANDROID-AUTO.md)
 
-## :large_blue_diamond: Configure your license (Only for Android)
+## Configure your license (Only for Android)
 
 Add the below entry in your android/app/src/main/res/values/strings.xml file (Create the file if it does not exists):
 
@@ -49,7 +60,9 @@ class App extends Component {
 
   componentDidMount() {
     Proximity.init({
-      accessToken: "<YOUR-ACCESS-TOKEN>"
+      accessToken: "<YOUR-ACCESS-TOKEN>",
+      distanceInterval: 100,
+      testMode: true
     }).then( async () => {
       // check the SDK's current tracking state.
       const isTracking = await Proximity.getTrackingState()
@@ -57,8 +70,21 @@ class App extends Component {
 
       // setup geofence handler
       Proximity.onGeofence = (isTracking) => {
-        // stuff to do here, when user enters geofence and tracking is stopped
+        // stuff to do here, when user enters geofence
       }
+
+      Proximity.onArrived = (isTracking) => {
+        // stuff to do here, when user manually calls arrived event
+      }
+
+      Proximity.onCompleted = () => {
+        // stuff to do here, when user manually calls completed event or order is marked completed
+      }
+
+      Proximity.onUpdateVehicleDetails = (vehicleDetails) => {
+        // stuff to do here, when user updates the vehicle details via updateVehicleDetails()
+      }
+
     })
   }
 
@@ -98,9 +124,14 @@ class App extends Component {
 
 To initialize tracking, call the init method, this will authorise the SDK with the provided `accessToken` against your tenant and prepare it for tracking.
 
+`testMode` (default - false) is used to switch between sandbox and production environments.
+
 ```js
 let initObj = {
-  accessToken: '<YOUR-ACCESS-TOKEN>', //associated with your tenant
+  accessToken: '<YOUR-ACCESS-TOKEN>', // associated with your tenant
+  testMode: true // (Optional) Default is false
+  distanceInterval: 50, // (Optional) Default is 50 (meters)
+  geofenceRadius: 200,  // (Optional) Default is 200 (meters)
 };
 
 Proximity.init(initObj);
@@ -111,7 +142,11 @@ Do not hide the call to #ready within a view which is loaded only by clicking a 
 
 ### Start tracking
 
-This will start the tracking process for the provided orderId. The SDK will prompt the user to provide access to Location Services in case the app has no permissions set for it. This prompt is shown when the `startTracking` method is triggered. Please note, that if Location Permission is denied, then the SDK will be unable to send location to the Delivery Solutions System. In case the permission is set to `When In Use`, the the location updates will be sent only when the app is in use, the user has to set the Location Permission to `Always` such that the Delivery Solutions System receives location updates even when the phone is in background.
+This will start the tracking process for the provided orderId. The SDK will prompt the user to provide access to Location Services in case the app has no permissions set for it. This prompt is shown when the `startTracking` method is triggered. 
+
+Please note, that if Location Permission is denied, then the SDK will be unable to send location to the Delivery Solutions System and only manual ETA updates would work.
+
+In case the permission is set to `When In Use`, the the location updates will be sent only when the app is in use, the user has to set the Location Permission to `Always` such that the Delivery Solutions System receives location updates even when the phone is in background.
 
 ```js
 const isTracking = await Proximity.startTracking({
@@ -119,9 +154,46 @@ const isTracking = await Proximity.startTracking({
 });
 ```
 
+### Updating ETA (Manually) 
+
+Manual ETA Updating should be used for following - 
+- User has not provided access to location and wants to manually 
+- User even during the automatic flow, wants to manually notify the ETA (changes flow to manual)
+
+An ISO 8601 timestamp is provided as the parameter indicating the new ETA.
+
+```js
+await Proximity.updateETA('<ORDER-ID>', '2021-10-06T11:13:10.038Z');
+```
+
+### Arriving to the store
+
+As in the order lifecycle, store can be informed of arrival by using markArrived function.
+
+markArrived could be called on click of a button such as "I've Arrived"
+
+Please note, tracking will continue even though the person has arrived.
+
+```js
+await Proximity.markArrived('<ORDER-ID>'); 
+```
+
+### Completing an Order
+
+As in the order lifecycle, store can be informed of the completion of order by using markCompleted function.
+
+Generally, this is to be called when the person has collected the order and wants to notify the store that to the store and stop location tracking. This should be called only once.
+
+
+
+```js
+await Proximity.markCompleted('<ORDER-ID>'); 
+```
+
+
 ### Stop tracking
 
-By default the SDK stops tracking automatically when the user reaches the destination. However, there might be cases when the user would want to stop the tracking manually. Call the below function to stop tracking:
+By default the SDK stops tracking only when the order is marked as completed by calling markAsCompleted function. However, there might be cases when the user would want to stop the tracking manually. Call the below function to stop tracking:
 
 ```js
 const isTracking = await Proximity.stopTracking(); // false will be returned when tracking is stopped successfully.
@@ -150,7 +222,9 @@ const isTracking = await  Proximity.getTrackingState();  // true indicates the t
 The following method is used to accept the vehicle details and the contact information of the user whose location is being tracked.
 
 ```js
-const trackingMetaData = await  Proximity.updateVehicleDetails({
+const trackingMetaData = await  Proximity.updateVehicleDetails(
+  '<ORDER-ID>',
+  {
   vehicleColor: 'silver | black | white | grey | blue | red | brown | green | teal | yellow',
   vehicleMake: 'string',
   vehicleType: 'hatchback | micro | minivan | pickup | sedan | truck | suv',
@@ -171,10 +245,104 @@ This event is triggered when the user whose location is being tracked enters the
 
 ```js
 Proximity.onGeofence = (isTracking) => {
-  // stuff to do here, when user enters geofence and tracking is stopped
+  // stuff to do here, when user enters geofence
+};
+```
+### On Arrived
+
+This event is triggered when the markArrived function is called.
+
+```js
+Proximity.onArrived = (isTracking) => {
+  // stuff to do here, when the location tracking has started
+};
+```
+### On Update Vehicle Details
+
+This event is triggered when the order's vehicle details are updated by the user.
+
+```js
+Proximity.onUpdateVehicleDetails = ( updatedVehicleDetails ) => {
+  // stuff to do here, when the order's vehicle details are updated
+};
+```
+### On Completed
+
+This event is triggered when the order has been marked as completed either by the user or by the store operator.
+
+```js
+Proximity.onCompleted = () => {
+  // stuff to do here, when the order has been completed
+};
+```
+### On Arrived
+
+This event is triggered when the markArrived function is called.
+
+```js
+Proximity.onArrived = (isTracking) => {
+  // stuff to do here, when the location tracking has started
+};
+```
+### On Update Vehicle Details
+
+This event is triggered when the order's vehicle details are updated by the user.
+
+```js
+Proximity.onUpdateVehicleDetails = () => {
+  // stuff to do here, when the order's vehicle details are updated
+};
+```
+### On Completed
+
+This event is triggered when the order has been marked as completed either by the user or by store operator.
+
+```js
+Proximity.onCompleted = () => {
+  // stuff to do here, when the order has been completed
 };
 ```
 
+## FAQ
+
+#### How can I get the licence key?
+
+Please raise a ticket with [DS support](https://www.deliverysolutions.co/contact-us) with details about the usage and the team shall provide the licence key.
+
+#### I have an Android/iOS native codebase instead of React Native.
+
+We also offer native Android and iOS SDKs. Please contact our support team for more details.
+
+
+## Event-Status Mapping
+
+| event | DS status     | Description                |
+| :-------- | :------- | :------------------------- |
+| `started` | `PICKUP_STARTED` | The user started their journey  |
+| `geofence` | `PICKUP_AT_LOCATION` | The user is within the geofence  |
+| `arrived` | `PICKUP_AT_LOCATION` | The user has arrived to the store  |
+| `completed` | `ORDER_DELIVERED` | Order was delivered / picked up.  |
+
+## FAQ
+
+#### How can I get the licence key?
+
+Please raise a ticket with [DS support](https://www.deliverysolutions.co/contact-us) with details about the usage and the team shall provide the licence key.
+
+#### I have an Android/iOS native codebase instead of React Native.
+
+We also offer native Android and iOS SDKs. Please contact our support team for more details.
+
+
+## Event-Status Mapping
+
+| event | DS status     | Description                |
+| :-------- | :------- | :------------------------- |
+| `started` | `PICKUP_STARTED` | The user started their journey  |
+| `geofence` | `PICKUP_STARTED` | The user is within the geofence  |
+| `arrived` | `PICKUP_AT_LOCATION` | The user has arrived to the store  |
+| `completed` | `ORDER_DELIVERED` | Order was delivered / picked up.  |
+
 ## License
 
-Copyright (c) 2021 by [Delivery Solutions](https://www.deliverysolutions.co). All Rights Reserved. Usage of this library implies agreement to abide by the license terms. Please refer to our [Terms of Service](https://www.deliverysolutions.co/terms-of-service).
+Copyright (c) 2022 by [Delivery Solutions](https://www.deliverysolutions.co). All Rights Reserved. Usage of this library implies agreement to abide by the license terms. Please refer to our [Terms of Service](https://www.deliverysolutions.co/terms-of-service).
