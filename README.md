@@ -45,7 +45,7 @@ Add the below entry in your android/app/src/main/res/values/strings.xml file (Cr
 ```xml
 <resources>
     <-- <other string entries go here> -->
-  <string name="proximity_sdk_license_key">YOUR_LICENSE_KEY</string>
+  <string name="proximity_sdk_license_key">[YOUR_LICENSE_KEY](#How can I get the licence key / accessToken?)</string>
 </resources>
 ```
 
@@ -305,29 +305,9 @@ Proximity.onCompleted = () => {
 
 ## FAQ
 
-#### How can I get the licence key?
+#### How can I get the licence key / accessToken?
 
-Please raise a ticket with [DS support](https://www.deliverysolutions.co/contact-us) with details about the usage and the team shall provide the licence key.
-
-#### I have an Android/iOS native codebase instead of React Native.
-
-We also offer native Android and iOS SDKs. Please contact our support team for more details.
-
-
-## Event-Status Mapping
-
-| event | DS status     | Description                |
-| :-------- | :------- | :------------------------- |
-| `started` | `PICKUP_STARTED` | The user started their journey  |
-| `geofence` | `PICKUP_AT_LOCATION` | The user is within the geofence  |
-| `arrived` | `PICKUP_AT_LOCATION` | The user has arrived to the store  |
-| `completed` | `ORDER_DELIVERED` | Order was delivered / picked up.  |
-
-## FAQ
-
-#### How can I get the licence key?
-
-Please raise a ticket with [DS support](https://www.deliverysolutions.co/contact-us) with details about the usage and the team shall provide the licence key.
+Please raise a ticket with [DS support](https://www.deliverysolutions.co/contact-us) with details about the usage and the team shall provide the required keys.
 
 #### I have an Android/iOS native codebase instead of React Native.
 
