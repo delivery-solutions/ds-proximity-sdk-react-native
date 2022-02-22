@@ -45,9 +45,10 @@ Add the below entry in your android/app/src/main/res/values/strings.xml file (Cr
 ```xml
 <resources>
     <-- <other string entries go here> -->
-  <string name="proximity_sdk_license_key">[YOUR_LICENSE_KEY](#How can I get the licence key / accessToken?)</string>
+  <string name="proximity_sdk_license_key">YOUR_LICENSE_KEY</string>
 </resources>
 ```
+[How to get YOUR_LICENSE_KEY](#faq)
 
 ## Usage
 
@@ -123,6 +124,8 @@ class App extends Component {
 ### Init tracking
 
 To initialize tracking, call the init method, this will authorise the SDK with the provided `accessToken` against your tenant and prepare it for tracking. accessToken must be environment dependant - for testMode as true our sandbox accessToken and for testMode as false use the production token.
+
+[How to get accessToken](#faq)
 
 `testMode` (default - false) is used to switch between sandbox and production environments.
 
