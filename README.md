@@ -11,6 +11,15 @@ Delivery Solutions' Proximity Tracking SDK for React Native
 ## Links
 
  - [Contact Us](https://www.deliverysolutions.co/contact-us)
+ - [NPM Package](https://www.npmjs.com/package/@deliverysolutions/react-native-proximity-sdk)
+
+
+## Integration Flow
+
+<p align="center" width="100%">
+    <img width="33%" src="https://raw.githubusercontent.com/delivery-solutions/ds-proximity-sdk-react-native/main/sdk-functions.png">
+</p>
+
 
 
 ## Installing the SDK
