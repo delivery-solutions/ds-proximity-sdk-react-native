@@ -331,7 +331,6 @@ We also offer native Android and iOS SDKs. Please contact our support team for m
 | event | DS status     | Description                |
 | :-------- | :------- | :------------------------- |
 | `started` | `PICKUP_STARTED` | The user started their journey  |
-| `geofence` | `PICKUP_STARTED` | The user is within the geofence  |
 | `arrived` | `PICKUP_AT_LOCATION` | The user has arrived to the store  |
 | `completed` | `ORDER_DELIVERED` | Order was delivered / picked up.  |
 
