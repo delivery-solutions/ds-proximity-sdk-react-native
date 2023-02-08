@@ -29,12 +29,14 @@ Delivery Solutions' Proximity Tracking SDK for React Native
 ```bash
 yarn add @deliverysolutions/react-native-proximity-sdk
 yarn add react-native-background-fetch
+yarn add @react-native-async-storage/async-storage
 ```
 
 ### With `npm`
 ```
 npm install @deliverysolutions/react-native-proximity-sdk --save
 npm install react-native-background-fetch --save
+npm install @react-native-async-storage/async-storage --save
 ```
 
 ## Setup Guides
