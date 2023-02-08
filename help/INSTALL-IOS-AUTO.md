@@ -10,6 +10,9 @@ yarn add @deliverysolution/react-native-proximity-sdk
 ```
 yarn add react-native-background-fetch@^4.0.3
 ```
+```
+yarn add @react-native-async-storage/async-storage
+```
 
 ### With `npm`
 ```shell
@@ -19,6 +22,10 @@ npm install @deliverysolution/react-native-proximity-sdk --save
 ```
 npm install react-native-background-fetch@^4.0.3
 ```
+```
+npm install @react-native-async-storage/async-storage
+```
+
 
 ## `pod install`
 
