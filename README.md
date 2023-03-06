@@ -40,8 +40,8 @@ npm install @react-native-async-storage/async-storage --save
 ```
 
 ## Setup Guides
-
-### `react-native >= 0.60`
+#### Follow the [official guide](https://reactnative.dev/docs/0.69/environment-setup) for react native setup ( `react-native >= 0.60` )
+<br>
 
 ### iOS
 - [Auto-linking Setup](https://github.com/delivery-solutions/ds-proximity-sdk-react-native/blob/main/help/INSTALL-IOS-AUTO.md)
