@@ -6,9 +6,11 @@
 ```shell
 yarn add @deliverysolution/react-native-proximity-sdk
 ```
-
 ```
-yarn add react-native-background-fetch@^4.0.3
+yarn add react-native-background-fetch@~4.1.0
+```
+```
+yarn add react-native-background-geolocation@~4.10.0
 ```
 ```
 yarn add @react-native-async-storage/async-storage
@@ -18,9 +20,11 @@ yarn add @react-native-async-storage/async-storage
 ```shell
 npm install @deliverysolution/react-native-proximity-sdk --save
 ```
-
 ```
-npm install react-native-background-fetch@^4.0.3
+npm install react-native-background-fetch@~4.1.0
+```
+```
+npm install react-native-background-geolocation@~4.10.0
 ```
 ```
 npm install @react-native-async-storage/async-storage
