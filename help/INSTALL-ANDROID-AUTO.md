@@ -7,9 +7,11 @@
 ```shell
 yarn add @deliverysolution/react-native-proximity-sdk
 ```
-
 ```
-yarn add react-native-background-fetch@^4.0.3
+yarn add react-native-background-fetch@~4.1.0
+```
+```
+yarn add react-native-background-geolocation@~4.10.0
 ```
 ```
 yarn add @react-native-async-storage/async-storage
@@ -20,9 +22,11 @@ yarn add @react-native-async-storage/async-storage
 ```shell
 npm install @deliverysolution/react-native-proximity-sdk --save
 ```
-
 ```
-npm install react-native-background-fetch@^4.0.3
+npm install react-native-background-fetch@~4.1.0
+```
+```
+npm install react-native-background-geolocation@~4.10.0
 ```
 ```
 npm install @react-native-async-storage/async-storage
@@ -40,18 +44,18 @@ Add the following `ext` variables to control the version of Google dependency ve
 
 In addition, custom `maven url` for both `background-geolocation` and `background-fetch` are required.
 
+:information_source: Note: Some recent versions of the React Native Android template may not include the allprojects section. You should add this manually as a separate section along with the nested repositories section in the same `android/build.gradle file`.
+
 ### :open_file_folder: **`android/build.gradle`**
 
 ```diff
 buildscript {
     ext {
-+       googlePlayServicesLocationVersion = "17.0.0"  // Or higher.
-        buildToolsVersion = "28.0.3"    // Or higher.
         minSdkVersion = 16
-        compileSdkVersion = 28          // Or higher.
-        targetSdkVersion = 28           // Or higher.
-        supportLibVersion = "1.0.2"     // For pre AndroidX apps.  Not required when using AndroidX
-+       appCompatVersion = "1.1.0"      // Or higher.  Required for new AndroidX compatibility.
+        targetSdkVersion = 31           // Or higher.
++       compileSdkVersion = 31          // Or higher.
++       appCompatVersion = "1.4.2"      // Or higher.  Required for new AndroidX compatibility.
++       googlePlayServicesLocationVersion = "20.0.0"  // Or higher.
     }
     ...
 }
@@ -68,7 +72,8 @@ allprojects {
             url("$rootDir/../node_modules/jsc-android/dist")
         }
 +       maven {
-+           url("${project(':deliverysolutions_react-native-proximity-sdk').projectDir}/libs")
++           // Required for react-native-background-geolocation
++           url("${project(':react-native-background-geolocation').projectDir}/libs")
 +       }
 +       maven {
 +           // Required for react-native-background-fetch
@@ -90,7 +95,7 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 
-+Project background_geolocation = project(':deliverysolutions_react-native-proximity-sdk')
++Project background_geolocation = project(':react-native-background-geolocation')
 +apply from: "${background_geolocation.projectDir}/app.gradle"
 ```
 
