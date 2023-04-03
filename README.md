@@ -28,14 +28,16 @@ Delivery Solutions' Proximity Tracking SDK for React Native
 
 ```bash
 yarn add @deliverysolutions/react-native-proximity-sdk
-yarn add react-native-background-fetch
+yarn add react-native-background-fetch@~4.1.0
+yarn add react-native-background-geolocation@~4.10.0
 yarn add @react-native-async-storage/async-storage
 ```
 
 ### With `npm`
 ```
 npm install @deliverysolutions/react-native-proximity-sdk --save
-npm install react-native-background-fetch --save
+npm install react-native-background-fetch@~4.1.0
+npm install react-native-background-geolocation@~4.10.0
 npm install @react-native-async-storage/async-storage --save
 ```
 
@@ -51,13 +53,26 @@ npm install @react-native-async-storage/async-storage --save
 
 ## Configure your license (Only for Android)
 
-Add the below entry in your android/app/src/main/res/values/strings.xml file (Create the file if it does not exists):
+Add the below entry in your android/app/src/main/AndroidManifest.xml file:
 
-```xml
-<resources>
-    <-- <other string entries go here> -->
-  <string name="proximity_sdk_license_key">YOUR_LICENSE_KEY</string>
-</resources>
+```diff
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.transistorsoft.backgroundgeolocation.react">
+
+  <application
+    android:name=".MainApplication"
+    android:allowBackup="true"
+    android:label="@string/app_name"
+    android:icon="@mipmap/ic_launcher"
+    android:theme="@style/AppTheme">
+
+    <!-- react-native-background-geolocation licence -->
++   <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="YOUR_LICENCE_KEY_HERE" />
+    .
+    .
+    .
+  </application>
+</manifest>
 ```
 [How to get YOUR_LICENSE_KEY](#faq)
 
@@ -305,15 +320,6 @@ This event is triggered when the order's vehicle details are updated by the user
 ```js
 Proximity.onUpdateVehicleDetails = () => {
   // stuff to do here, when the order's vehicle details are updated
-};
-```
-### On Completed
-
-This event is triggered when the order has been marked as completed either by the user or by store operator.
-
-```js
-Proximity.onCompleted = () => {
-  // stuff to do here, when the order has been completed
 };
 ```
 
