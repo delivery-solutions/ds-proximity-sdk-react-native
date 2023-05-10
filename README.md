@@ -89,7 +89,8 @@ class App extends Component {
     Proximity.init({
       accessToken: "<YOUR-ACCESS-TOKEN>",
       distanceInterval: 100,
-      testMode: true
+      testMode: true,
+      logLevel: 'info'
     }).then( async () => {
       // check the SDK's current tracking state.
       const isTracking = await Proximity.getTrackingState()
@@ -153,14 +154,19 @@ To initialize tracking, call the init method, this will authorise the SDK with t
 
 [How to get accessToken](#faq)
 
-`testMode` (default - false) is used to switch between sandbox and production environments.
+- **`testMode`** (default - false) is used to switch between sandbox and production environments.
+- **`logLevel`** (default - 'error') is used to decide which log types/levels, of the library, should surface up in your temrinal/console.
+  - We have provided four log levels viz., `error`, `warn`, `info` and `debug`, with error having the highest weight and debug having the    lowest.
+  - Following is the order of the log levels in descending order as per their weights - error > warn > info > debug.
+  - For Ex. If you have selected info, then logs with weights info and above will be appearing on the console, ignoring the debug one,     from our library
+  - **NOTE**: Use the exact same word, as specified in available options, when you opt for a log level, if not than it will throw an error.
 
 ```js
 let initObj = {
   accessToken: '<YOUR-ACCESS-TOKEN>', // associated with your tenant
-  testMode: true // (Optional) Default is false
+  testMode: true, // (Optional) Default is false
   distanceInterval: 50, // (Optional) Default is 50 (meters)
-  geofenceRadius: 200,  // (Optional) Default is 200 (meters)
+  logLevel: 'info',  // (Optional) Default is 'error'
 };
 
 Proximity.init(initObj);
@@ -270,7 +276,7 @@ const trackingMetaData = await  Proximity.updateVehicleDetails(
 
 ### On Geofence
 
-This event is triggered when the user whose location is being tracked enters the vicinity of the adress of the associated order. If there is anything that you want to do once the user reaches it's destination, then that can be done here.
+This event is triggered when the user, whose location is being tracked, enters any configured geofence boundary of the store that is associated with the order. If there is anything that you want to do once the user breached/enters the geofence boundary, then that can be done here. Currently, we support two types of geofence boundary `nearby` and `at-location`.
 
 ```js
 Proximity.onGeofence = (isTracking) => {
