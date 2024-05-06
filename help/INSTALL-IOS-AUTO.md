@@ -31,7 +31,7 @@ npm install @react-native-async-storage/async-storage
 ```
 
 
-## `pod install`
+## pod install
 
 ```bash
 $ cd ios
@@ -58,6 +58,65 @@ Edit **`Info.plist`**.  Add the following items (Set **Value** as desired):
 
 ![](https://dl.dropboxusercontent.com/s/j7udsab7brlj4yk/Screenshot%202016-09-22%2008.33.53.png?dl=1)
 
+## Privacy Manifest
+To avoid fingerprinting and another potential risk, Apple now requires apps and third-party SDKs to surface information related to Type of Data Collected, Tracking Different Domains and Groups of another API that requires approved reasons. (For more information this [link](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_data_use_in_privacy_manifests))
+
+If the privacy manifest file does not exist, then you can create one following the information mentioned in [apple doc](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/adding_a_privacy_manifest_to_your_app_or_third-party_sdk). You will find the **PrivacyInfo.xcprivacy** file right under the **ios/** directory.
+
+Add the following four blocks within the `NSPrivacyAccessedAPITypes` **<array>** dictionary:
+```javascript
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+<dict>
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+        <!-- [1] background_fetch: UserDefaults -->
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>CA92.1</string>
+            </array>
+        </dict>
+
+        <!-- [2] background_geolocation: UserDefaults -->
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>CA92.1</string>
+                <string>1C8F.1</string>
+            </array>
+        </dict>
+        <!-- [3] background_geolocation (CocoaLumberjack): FileTimestamp -->
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>C617.1</string>
+                <string>0A2A.1</string>
+            </array>
+        </dict>
+        <!-- [4] background_geolocation (CocoaLumberjack): DiskSpace -->
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryDiskSpace</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>E174.1</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>
+```
 
 ## [Configure `react-native-background-fetch`](https://github.com/transistorsoft/react-native-background-fetch/blob/master/docs/INSTALL-AUTO-IOS.md#configure-background-capabilities)
 
