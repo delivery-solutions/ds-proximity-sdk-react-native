@@ -61,9 +61,9 @@ Edit **`Info.plist`**.  Add the following items (Set **Value** as desired):
 ## Privacy Manifest
 To avoid fingerprinting and another potential risk, Apple now requires apps and third-party SDKs to surface information related to Type of Data Collected, Tracking Different Domains and Groups of API that require approved reasons. (For more information refer [link](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_data_use_in_privacy_manifests))
 
-If the privacy manifest file does not exist, then you can create one following the information mentioned in [apple doc](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/adding_a_privacy_manifest_to_your_app_or_third-party_sdk). You will find the **PrivacyInfo.xcprivacy** file right under the **ios/** directory.
+If the privacy manifest file does not exist, then you can create one following the information mentioned in [apple doc](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/adding_a_privacy_manifest_to_your_app_or_third-party_sdk). Once create, you will find the **PrivacyInfo.xcprivacy** file right under the **ios/** directory.
 
-Add the following four blocks within the `NSPrivacyAccessedAPITypes` **<array>** dictionary:
+Add the following four blocks within the `NSPrivacyAccessedAPITypes` `<array>` dictionary:
 ```javascript
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
