@@ -59,7 +59,7 @@ Edit **`Info.plist`**.  Add the following items (Set **Value** as desired):
 ![](https://dl.dropboxusercontent.com/s/j7udsab7brlj4yk/Screenshot%202016-09-22%2008.33.53.png?dl=1)
 
 ## Privacy Manifest
-To avoid fingerprinting and another potential risk, Apple now requires apps and third-party SDKs to surface information related to Type of Data Collected, Tracking Different Domains and Groups of another API that requires approved reasons. (For more information this [link](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_data_use_in_privacy_manifests))
+To avoid fingerprinting and another potential risk, Apple now requires apps and third-party SDKs to surface information related to Type of Data Collected, Tracking Different Domains and Groups of API that require approved reasons. (For more information refer [link](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_data_use_in_privacy_manifests))
 
 If the privacy manifest file does not exist, then you can create one following the information mentioned in [apple doc](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/adding_a_privacy_manifest_to_your_app_or_third-party_sdk). You will find the **PrivacyInfo.xcprivacy** file right under the **ios/** directory.
 
